@@ -56,6 +56,12 @@ public class AplikasiKonversiSuhu extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.insets = new java.awt.Insets(14, 5, 0, 5);
         jPanel1.add(besarSuhuLabel, gridBagConstraints);
+
+        suhuTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suhuTextFieldActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -195,12 +201,88 @@ public class AplikasiKonversiSuhu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void convertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_convertButtonActionPerformed
-        //convert dari celcius ke fahrenheit
+        //converter suhu
+        try {
+        double suhu = Double.parseDouble(suhuTextField.getText());
+        double hasil = 0;
+        String satuanAwal = "";
+        
+        if (celciusRadioButton.isSelected()) {
+            satuanAwal = "Celcius";
+        } else if (reamurRadioButton.isSelected()) {
+            satuanAwal = "Reamur";
+        } else if (fahrenheitRadioButton.isSelected()) {
+            satuanAwal = "Fahrenheit";
+        } else if (kelvinRadioButton.isSelected()) {
+            satuanAwal = "Kelvin";
+        } else {
+            throw new Exception("Pilih satuan suhu awal.");
+        }
+        
+        String satuanTujuan = (String) suhuComboBox.getSelectedItem();
+        
+        switch (satuanAwal) {
+            case "Celcius":
+                if (satuanTujuan.equals("Reamur")) {
+                    hasil = suhu * 4 / 5;
+                } else if (satuanTujuan.equals("Fahrenheit")) {
+                    hasil = suhu * 9 / 5 + 32;
+                } else if (satuanTujuan.equals("Kelvin")) {
+                    hasil = suhu + 273.15;
+                } else {
+                    hasil = suhu;
+                }
+                break;
+            case "Reamur":
+                if (satuanTujuan.equals("Celcius")) {
+                    hasil = suhu * 5 / 4;
+                } else if (satuanTujuan.equals("Fahrenheit")) {
+                    hasil = suhu * 9 / 4 + 32;
+                } else if (satuanTujuan.equals("Kelvin")) {
+                    hasil = suhu * 5 / 4 + 273.15;
+                } else {
+                    hasil = suhu;
+                }
+                break;
+            case "Fahrenheit":
+                if (satuanTujuan.equals("Celcius")) {
+                    hasil = (suhu - 32) * 5 / 9;
+                } else if (satuanTujuan.equals("Reamur")) {
+                    hasil = (suhu - 32) * 4 / 9;
+                } else if (satuanTujuan.equals("Kelvin")) {
+                    hasil = (suhu - 32) * 5 / 9 + 273.15;
+                } else {
+                    hasil = suhu;
+                }
+                break;
+            case "Kelvin":
+                if (satuanTujuan.equals("Celcius")) {
+                    hasil = suhu - 273.15;
+                } else if (satuanTujuan.equals("Reamur")) {
+                    hasil = (suhu - 273.15) * 4 / 5;
+                } else if (satuanTujuan.equals("Fahrenheit")) {
+                    hasil = (suhu - 273.15) * 9 / 5 + 32;
+                } else {
+                    hasil = suhu;
+                }
+                break;
+        }
+        
+        hasilTextField.setText(String.valueOf(hasil));
+    } catch (NumberFormatException e) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Input tidak valid. Masukkan angka yang benar.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+    } catch (Exception e) {
+        javax.swing.JOptionPane.showMessageDialog(this, e.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_convertButtonActionPerformed
 
     private void suhuComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suhuComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_suhuComboBoxActionPerformed
+
+    private void suhuTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suhuTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_suhuTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
