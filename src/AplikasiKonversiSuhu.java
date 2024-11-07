@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author ACER
@@ -60,6 +62,11 @@ public class AplikasiKonversiSuhu extends javax.swing.JFrame {
         suhuTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 suhuTextFieldActionPerformed(evt);
+            }
+        });
+        suhuTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                suhuTextFieldKeyTyped(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -138,6 +145,11 @@ public class AplikasiKonversiSuhu extends javax.swing.JFrame {
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
         closeButton.setText("Close");
+        closeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -268,10 +280,13 @@ public class AplikasiKonversiSuhu extends javax.swing.JFrame {
                 break;
         }
         
+        //tampilan hasil
         hasilTextField.setText(String.valueOf(hasil));
     } catch (NumberFormatException e) {
         javax.swing.JOptionPane.showMessageDialog(this, "Input tidak valid. Masukkan angka yang benar.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-    } catch (Exception e) {
+    } 
+        //error saat mengklik button convert jika yang diisi bukan angka
+        catch (Exception e) {
         javax.swing.JOptionPane.showMessageDialog(this, e.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_convertButtonActionPerformed
@@ -283,6 +298,25 @@ public class AplikasiKonversiSuhu extends javax.swing.JFrame {
     private void suhuTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suhuTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_suhuTextFieldActionPerformed
+
+    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
+        //konfirmasi keluar dari aplikasi jika button close di klik
+        int confirm = javax.swing.JOptionPane.showConfirmDialog(this,
+            "Apakah anda yakin ingin keluar?",
+            "Konfirmasi",
+            javax.swing.JOptionPane.YES_NO_OPTION);
+        if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_closeButtonActionPerformed
+
+    private void suhuTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_suhuTextFieldKeyTyped
+        char c = evt.getKeyChar();
+        if (!((c >= '0' && c <= '9') || c == '.' || c == '-' || c == KeyEvent.VK_BACK_SPACE || c == KeyEvent.VK_DELETE)) {
+            evt.consume();
+        }
+        
+    }//GEN-LAST:event_suhuTextFieldKeyTyped
 
     /**
      * @param args the command line arguments
