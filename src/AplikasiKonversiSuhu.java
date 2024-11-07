@@ -28,32 +28,116 @@ public class AplikasiKonversiSuhu extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
-        celciusLabel = new javax.swing.JLabel();
-        fahrenheitLabel = new javax.swing.JLabel();
+        besarSuhuLabel = new javax.swing.JLabel();
+        suhuTextField = new javax.swing.JTextField();
+        celciusRadioButton = new javax.swing.JRadioButton();
+        reamurRadioButton = new javax.swing.JRadioButton();
+        fahrenheitRadioButton = new javax.swing.JRadioButton();
+        kelvinRadioButton = new javax.swing.JRadioButton();
+        jPanel2 = new javax.swing.JPanel();
+        suhuComboBox = new javax.swing.JComboBox<>();
+        hasilLabel = new javax.swing.JLabel();
+        hasilTextField = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        closeButton = new javax.swing.JButton();
         convertButton = new javax.swing.JButton();
-        celciusTextField = new javax.swing.JTextField();
+        judulLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Aplikasi Converter Suhu", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei Light", 1, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Suhu Yang Dikonversi", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei Light", 1, 14))); // NOI18N
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        celciusLabel.setText("Celcius");
+        besarSuhuLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        besarSuhuLabel.setText("Besarnya Suhu");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(26, 19, 0, 10);
-        jPanel1.add(celciusLabel, gridBagConstraints);
-
-        fahrenheitLabel.setText("Fahrenheit");
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(14, 5, 0, 5);
+        jPanel1.add(besarSuhuLabel, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(10, 5, 0, 0);
+        jPanel1.add(suhuTextField, gridBagConstraints);
+
+        celciusRadioButton.setText("Celcius");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(16, 0, 16, 7);
+        jPanel1.add(celciusRadioButton, gridBagConstraints);
+
+        reamurRadioButton.setText("Reamur");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(16, 0, 16, 8);
+        jPanel1.add(reamurRadioButton, gridBagConstraints);
+
+        fahrenheitRadioButton.setText("Fahrenheit");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(16, 0, 16, 8);
+        jPanel1.add(fahrenheitRadioButton, gridBagConstraints);
+
+        kelvinRadioButton.setText("Kelvin");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(16, 0, 16, 1);
+        jPanel1.add(kelvinRadioButton, gridBagConstraints);
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Suhu Hasil Konversi", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Microsoft YaHei Light", 1, 14))); // NOI18N
+        jPanel2.setLayout(new java.awt.GridBagLayout());
+
+        suhuComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Celcius", "Reamur", "Fahrenheit", "Kelvin" }));
+        suhuComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suhuComboBoxActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 4);
+        jPanel2.add(suhuComboBox, gridBagConstraints);
+
+        hasilLabel.setText("Hasil");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(11, 19, 18, 10);
-        jPanel1.add(fahrenheitLabel, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(8, 3, 7, 0);
+        jPanel2.add(hasilLabel, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(8, 6, 7, 4);
+        jPanel2.add(hasilTextField, gridBagConstraints);
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.setLayout(new java.awt.GridBagLayout());
+
+        closeButton.setText("Close");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        jPanel3.add(closeButton, gridBagConstraints);
 
         convertButton.setText("Convert");
         convertButton.addActionListener(new java.awt.event.ActionListener() {
@@ -63,29 +147,48 @@ public class AplikasiKonversiSuhu extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 8;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(11, 4, 22, 0);
-        jPanel1.add(convertButton, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(26, 5, 0, 0);
-        jPanel1.add(celciusTextField, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(2, 0, 22, 0);
+        jPanel3.add(convertButton, gridBagConstraints);
+
+        judulLabel.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        judulLabel.setForeground(new java.awt.Color(102, 102, 102));
+        judulLabel.setText("Aplikasi Konversi Suhu");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(36, 36, 36))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(101, 101, 101)
+                .addComponent(judulLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(judulLabel)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -93,10 +196,11 @@ public class AplikasiKonversiSuhu extends javax.swing.JFrame {
 
     private void convertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_convertButtonActionPerformed
         //convert dari celcius ke fahrenheit
-        double celcius = Double.parseDouble(celciusTextField.getText());
-        double fahrenheit =celcius * 1.8 + 32;
-        fahrenheitLabel.setText(fahrenheit + " Fahrenheit");
     }//GEN-LAST:event_convertButtonActionPerformed
+
+    private void suhuComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suhuComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_suhuComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,10 +238,20 @@ public class AplikasiKonversiSuhu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel celciusLabel;
-    private javax.swing.JTextField celciusTextField;
+    private javax.swing.JLabel besarSuhuLabel;
+    private javax.swing.JRadioButton celciusRadioButton;
+    private javax.swing.JButton closeButton;
     private javax.swing.JButton convertButton;
-    private javax.swing.JLabel fahrenheitLabel;
+    private javax.swing.JRadioButton fahrenheitRadioButton;
+    private javax.swing.JLabel hasilLabel;
+    private javax.swing.JTextField hasilTextField;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel judulLabel;
+    private javax.swing.JRadioButton kelvinRadioButton;
+    private javax.swing.JRadioButton reamurRadioButton;
+    private javax.swing.JComboBox<String> suhuComboBox;
+    private javax.swing.JTextField suhuTextField;
     // End of variables declaration//GEN-END:variables
 }
