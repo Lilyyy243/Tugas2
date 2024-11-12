@@ -18,6 +18,26 @@ public class AplikasiKonversiSuhu extends javax.swing.JFrame {
      */
     public AplikasiKonversiSuhu() {
         initComponents();
+        
+        // Add document listener to suhuTextField
+        suhuTextField.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                updateHasil();
+            }
+            public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                updateHasil();
+            }
+            public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                updateHasil();
+            }
+        });
+        
+        // Add action listener to combo box
+        suhuComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateHasil();
+            }
+        });
     }
 
     /**
@@ -157,6 +177,8 @@ public class AplikasiKonversiSuhu extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(8, 3, 7, 0);
         jPanel2.add(hasilLabel, gridBagConstraints);
+
+        hasilTextField.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -234,42 +256,6 @@ public class AplikasiKonversiSuhu extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
-
-        suhuTextField.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
-            public void changedUpdate(javax.swing.event.DocumentEvent e) { updateHasil(); }
-            public void removeUpdate(javax.swing.event.DocumentEvent e) { updateHasil(); }
-            public void insertUpdate(javax.swing.event.DocumentEvent e) { updateHasil(); }
-        });
-
-        celciusRadioButton.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                updateHasil();
-            }
-        });
-
-        reamurRadioButton.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                updateHasil();
-            }
-        });
-
-        fahrenheitRadioButton.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                updateHasil();
-            }
-        });
-
-        kelvinRadioButton.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                updateHasil();
-            }
-        });
-
-        suhuComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateHasil();
-            }
-        });
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -381,19 +367,19 @@ public class AplikasiKonversiSuhu extends javax.swing.JFrame {
     }//GEN-LAST:event_suhuTextFieldKeyTyped
 
     private void reamurRadioButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_reamurRadioButtonItemStateChanged
-        // TODO add your handling code here:
+        updateHasil();
     }//GEN-LAST:event_reamurRadioButtonItemStateChanged
 
     private void celciusRadioButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_celciusRadioButtonItemStateChanged
-        // TODO add your handling code here:
+        updateHasil();
     }//GEN-LAST:event_celciusRadioButtonItemStateChanged
 
     private void fahrenheitRadioButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_fahrenheitRadioButtonItemStateChanged
-        // TODO add your handling code here:
+        updateHasil();
     }//GEN-LAST:event_fahrenheitRadioButtonItemStateChanged
 
     private void kelvinRadioButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_kelvinRadioButtonItemStateChanged
-        // TODO add your handling code here:
+        updateHasil();
     }//GEN-LAST:event_kelvinRadioButtonItemStateChanged
 
     private void updateHasil() {
@@ -469,7 +455,9 @@ public class AplikasiKonversiSuhu extends javax.swing.JFrame {
                     break;
             }
             
-            hasilTextField.setText(String.valueOf(hasil));
+            // Format hasil to 2 decimal places
+            String formattedHasil = String.format("%.2f", hasil);
+            hasilTextField.setText(formattedHasil);
         } catch (NumberFormatException e) {
             hasilTextField.setText("");
         }
